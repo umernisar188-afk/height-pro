@@ -11,26 +11,55 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-export const metadata = {
-  title: "Height Comparison Tool",
-  description: "Compare heights instantly and see who is taller.",
+
+export const metadata: Metadata = {
+  icons: {
+ icon: "/icon.png?v=2",
+},
+  title: {
+    default: "Height Pro | Compare Heights & Celebrity Heights",
+    template: "%s | Height Pro",
+  },
+
+  description:
+    "Compare heights instantly and discover the heights of your favorite celebrities, athletes, fighters, actors, musicians, and public figures.",
+
+  keywords: [
+    "height comparison",
+    "compare heights",
+    "celebrity heights",
+    "how tall is",
+    "height difference",
+    "height calculator",
+    "athlete heights",
+    "celebrity height comparison",
+  ],
+
+  metadataBase: new URL("https://your-domain.com"),
+
   openGraph: {
-    title: "Height Comparison Tool",
-    description: "Compare heights instantly and see who is taller.",
+    title: "Height Pro | Compare Heights & Celebrity Heights",
+    description:
+      "Compare heights instantly and discover the heights of famous celebrities, athletes, fighters, actors, and public figures.",
     type: "website",
     url: "https://your-domain.com",
-    images: [
-      {
-        url: "https://your-domain.com/og-image.png",
-      },
-    ],
+    siteName: "Height Pro",
+    locale: "en_US",
   },
+
   twitter: {
     card: "summary_large_image",
-    title: "Height Comparison Tool",
-    description: "Compare heights instantly and see who is taller.",
+    title: "Height Pro | Compare Heights & Celebrity Heights",
+    description:
+      "Compare heights instantly and discover celebrity heights.",
+  },
+
+  robots: {
+    index: true,
+    follow: true,
   },
 };
+
 export default function RootLayout({
   children,
 }: Readonly<{
