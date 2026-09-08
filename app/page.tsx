@@ -1,9 +1,11 @@
 "use client";
-
-import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useState } from "react";
 import confetti from "canvas-confetti";
 
-export default function Home() {
+function Home() {
+  const searchParams = useSearchParams();
+
   const [heightA, setHeightA] = useState("");
   const [heightB, setHeightB] = useState("");
   const [nameA, setNameA] = useState("");
@@ -35,6 +37,31 @@ export default function Home() {
     localStorage.removeItem("history");
   }
 }, []);
+useEffect(() => {
+  const urlHeightA = searchParams.get("heightA");
+  const urlHeightB = searchParams.get("heightB");
+  const urlNameB = searchParams.get("nameB");
+
+  if (urlHeightB) {
+    setHeightB(urlHeightB);
+    setNameB(urlNameB || "Person B");
+  }
+
+  if (urlHeightA) {
+    setHeightA(urlHeightA);
+    setNameA("You");
+  }
+
+  if (urlHeightA && urlHeightB) {
+    const a = Number(urlHeightA);
+    const b = Number(urlHeightB);
+
+    setDifference(Math.abs(a - b));
+    setShowVS(true);
+    setAnimateBars(true);
+    setResultVisible(true);
+  }
+}, [searchParams]);
 const cmToFeetInches = (cm: number) => {
   if (!cm || cm <= 0) return "";
 
@@ -878,7 +905,7 @@ const clearAll = () => {
                       className="relative w-20 overflow-hidden rounded-t-[2rem] border border-white/20 bg-gradient-to-t from-[#1dbb6c] to-[#8cff70] shadow-[0_20px_60px_rgba(57,255,136,0.3)] transition-all duration-[1200ms] sm:w-36"
                       style={{
                         height: animateBars
-  ? `${Math.min(Number(heightB) * 2.2, 430)}px`
+  ? `${Math.min(Number(heightA) * 2.2, 430)}px`
   : "0px",
                       }}
                     >
@@ -950,10 +977,11 @@ const clearAll = () => {
                     <div
                       className="relative w-20 overflow-hidden rounded-t-[2rem] border border-white/20 bg-gradient-to-t from-[#e85d1c] to-[#ffb347] shadow-[0_20px_60px_rgba(255,122,69,0.3)] transition-all duration-[1200ms] sm:w-36"
                       style={{
-                        height: animateBars
-                          ? `${Math.min(Number(heightA) * 2.2, 430)}px`
-                          : "0px",
-                      }}
+  height: animateBars
+    ? `${Math.min(Number(heightB) * 2.2, 430)}px`
+    : "0px",
+}}
+                        
                     >
 
                       <div className="absolute inset-y-0 left-4 w-4 bg-white/20 blur-sm" />
@@ -1398,5 +1426,13 @@ const clearAll = () => {
       </footer>
 
     </main>
+  );
+}
+
+export default function HomePage() {
+  return (
+    <Suspense fallback={null}>
+      <Home />
+    </Suspense>
   );
 }

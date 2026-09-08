@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { people } from "../../data/people";
-
+import HeightRace from "./HeightRace";
 function cmToFeetInches(cm: number) {
   const totalInches = cm / 2.54;
   const feet = Math.floor(totalInches / 12);
@@ -236,7 +236,7 @@ export default async function PersonPage({
             <div className="mt-12 flex flex-wrap gap-5">
 
               <Link
-                href="/"
+                href={`/?heightB=${person.heightCm}&nameB=${encodeURIComponent(person.name)}`}
                 className="border-[3px] border-[#172033] bg-[#ff5a1f] px-7 py-4 font-black uppercase text-white shadow-[6px_6px_0_#172033] transition hover:-translate-y-1 hover:bg-[#b9ef35] hover:text-[#172033]"
               >
                 Compare Heights 🏁
@@ -254,6 +254,10 @@ export default async function PersonPage({
           </div>
 
         </section>
+        <HeightRace
+          celebrityName={person.name}
+          celebrityHeight={person.heightCm}
+        />
 
         {/* RELATED CHAMPIONS */}
         {relatedPeople.length > 0 && (

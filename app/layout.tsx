@@ -70,7 +70,25 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+  <nav className="border-b-2 border-slate-200 bg-slate-950 text-white shadow-md">
+    <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
+      <a href="/" className="text-2xl font-black tracking-tight">
+  🏁 Height Pro
+</a>
+      <div className="flex items-center gap-4 text-sm font-medium">
+        <a href="/" className="hover:underline">
+          Home
+        </a>
+        <a href="/people" className="hover:underline">
+          People
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  {children}
+</body>
     </html>
   );
 }

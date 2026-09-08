@@ -353,13 +353,14 @@ export default async function ComparePage({
 
           {/* ACTIONS */}
           <div className="flex flex-wrap justify-center gap-5 px-6 py-12">
-
-            <Link
-              href="/"
-              className="border-[4px] border-[#172033] bg-[#ff5a1f] px-7 py-4 font-black uppercase text-white shadow-[6px_6px_0_#172033] transition hover:-translate-y-1 hover:bg-[#b9ef35] hover:text-[#172033]"
-            >
-              ← Compare Again
-            </Link>
+<Link
+  href={`/?heightA=${heightA}&heightB=${heightB}&nameB=${encodeURIComponent(
+    celebrityName
+  )}`}
+  className="border-[4px] border-[#172033] bg-[#ff5a1f] px-7 py-4 font-black uppercase text-white shadow-[6px_6px_0_#172033] transition hover:-translate-y-1 hover:bg-[#b9ef35] hover:text-[#172033]"
+>
+  ← Compare Again
+</Link>
 
             <Link
               href="/people"
