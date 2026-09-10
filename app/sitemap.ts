@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { people } from "./data/people";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://your-domain.com";
+  const baseUrl = "https://heightproapp.com";
 
   const peopleUrls = people.map((person) => ({
     url: `${baseUrl}/people/${person.slug}`,

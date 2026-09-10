@@ -35,14 +35,14 @@ export const metadata: Metadata = {
     "celebrity height comparison",
   ],
 
-  metadataBase: new URL("https://your-domain.com"),
+  metadataBase: new URL("https://heightproapp.com"),
 
   openGraph: {
     title: "Height Pro | Compare Heights & Celebrity Heights",
     description:
       "Compare heights instantly and discover the heights of famous celebrities, athletes, fighters, actors, and public figures.",
     type: "website",
-    url: "https://your-domain.com",
+    url: "https://heightproapp.com",
     siteName: "Height Pro",
     locale: "en_US",
   },
