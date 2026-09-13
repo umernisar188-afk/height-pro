@@ -1412,19 +1412,29 @@ const clearAll = () => {
       )}
 
 
+{/* FOOTER */}
 
-      {/* FOOTER */}
+<footer className="border-t border-white/10 px-4 py-10 text-center">
 
-      <footer className="border-t border-white/10 px-4 py-10 text-center">
+  <p className="text-sm font-bold uppercase tracking-[0.25em] text-slate-400">
+    Height Pro · Built For The Championship
+  </p>
 
-        <p className="text-sm font-bold uppercase tracking-[0.25em] text-slate-400">
+  <a
+    href="https://spotstartups.com"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="mt-5 inline-block"
+  >
+    <img
+      src="https://spotstartups.com/assets/badges/spotstartups.com_badge_dark.svg"
+      width="175"
+      height="55"
+      alt="Spot Startups"
+    />
+  </a>
 
-          Height Pro · Built For The Championship
-
-        </p>
-
-      </footer>
-
+</footer>
     </main>
   );
 }
