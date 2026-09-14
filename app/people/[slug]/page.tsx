@@ -260,8 +260,7 @@ export default async function PersonPage({
         Can I compare {person.name} with another person?
       </h3>
       <p className="mt-2">
-        Yes. Use Height Pro to compare your height with {person.name}
-        and explore other athletes, celebrities, and public figures.
+        Yes. Use Height Pro to compare your height with {person.name} and explore other athletes, celebrities, and public figures.
       </p>
     </div>
   </div>
