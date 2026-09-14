@@ -28,8 +28,8 @@ export async function generateMetadata({
   const heightFeet = cmToFeetInches(person.heightCm);
 
   return {
-    title: `${person.name} Height`,
-    description: `How tall is ${person.name}? ${person.name} is listed at ${person.heightCm} cm (${heightFeet}) tall. Compare their height with other celebrities and athletes.`,
+    title: `${person.name} Height: ${person.heightCm} cm | Height Pro`,
+    description: `How tall is ${person.name}? ${person.name} is listed at ${person.heightCm} cm (${heightFeet}). Compare your height with ${person.name} and other athletes, celebrities, and public figures on Height Pro.`,
   };
 }
 
@@ -231,7 +231,41 @@ export default async function PersonPage({
               </div>
 
             </div>
+<section className="mt-10">
+  <h2 className="text-2xl font-black uppercase text-[#172033]">
+    {person.name} Height FAQ
+  </h2>
 
+  <div className="mt-6 space-y-5 text-[#172033]/70">
+    <div>
+      <h3 className="font-black text-[#172033]">
+        How tall is {person.name}?
+      </h3>
+      <p className="mt-2">
+        {person.name} is listed at {person.heightCm} cm ({heightFeet}).
+      </p>
+    </div>
+
+    <div>
+      <h3 className="font-black text-[#172033]">
+        How does {person.name}'s height compare with mine?
+      </h3>
+      <p className="mt-2">
+        Enter your height in the race below to see the exact difference.
+      </p>
+    </div>
+
+    <div>
+      <h3 className="font-black text-[#172033]">
+        Can I compare {person.name} with another person?
+      </h3>
+      <p className="mt-2">
+        Yes. Use Height Pro to compare your height with {person.name}
+        and explore other athletes, celebrities, and public figures.
+      </p>
+    </div>
+  </div>
+</section>
             {/* ACTION BUTTONS */}
             <div className="mt-12 flex flex-wrap gap-5">
 
