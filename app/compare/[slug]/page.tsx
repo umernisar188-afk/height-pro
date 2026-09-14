@@ -2,19 +2,24 @@ import Link from "next/link";
 
 export async function generateMetadata({
   params,
+  searchParams,
 }: {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<{ name?: string }>;
 }) {
   const { slug } = await params;
+  const { name } = await searchParams;
 
   const parts = slug.split("-vs-");
 
   const a = parts[0]?.replace("cm", "").trim() || "0";
   const b = parts[1]?.replace("cm", "").trim() || "0";
 
+  const celebrityName = name || `${b}cm`;
+
   return {
-    title: `${a}cm vs ${b}cm Height Comparison`,
-    description: `Compare ${a}cm and ${b}cm instantly. See who is taller and the exact difference.`,
+    title: `${celebrityName} Height Comparison | Height Pro`,
+    description: `Compare your height with ${celebrityName}. See the exact height difference, who is taller, and a visual height comparison on Height Pro.`,
   };
 }
 
