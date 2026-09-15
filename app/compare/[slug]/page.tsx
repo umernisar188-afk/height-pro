@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { people } from "../../data/people";
 
 export async function generateMetadata({
   params,
@@ -12,11 +13,12 @@ export async function generateMetadata({
 
   const parts = slug.split("-vs-");
 
-  const a = parts[0]?.replace("cm", "").trim() || "0";
-  const b = parts[1]?.replace("cm", "").trim() || "0";
+const a = parts[0]?.replace("cm", "").trim() || "0";
+const b = parts[1]?.replace("cm", "").trim() || "0";
 
-  const celebrityName = name || `${b}cm`;
+const person = people.find((p) => p.slug === b);
 
+const celebrityName = name || person?.name || `${b}cm`;
   return {
     title: `${celebrityName} Height Comparison | Height Pro`,
     description: `Compare your height with ${celebrityName}. See the exact height difference, who is taller, and a visual height comparison on Height Pro.`,
@@ -37,9 +39,15 @@ export default async function ComparePage({
 
   const parts = slug.split("-vs-");
 
-  const heightA = Number(parts[0]?.replace("cm", "").trim()) || 0;
-  const heightB = Number(parts[1]?.replace("cm", "").trim()) || 0;
+const heightA = Number(parts[0]?.replace("cm", "").trim()) || 0;
 
+const person = people.find((p) => p.slug === parts[1]);
+
+const heightB = person
+  ? person.heightCm
+  : Number(parts[1]?.replace("cm", "").trim()) || 0;
+
+const actualCelebrityName = person?.name || celebrityName;
   const winner =
     heightA > heightB ? "A" : heightB > heightA ? "B" : "tie";
 
@@ -194,7 +202,7 @@ export default async function ComparePage({
             >
 
               <p className="text-sm font-black uppercase tracking-[0.2em] text-[#172033]/60">
-                {celebrityName}
+                {actualCelebrityName}
               </p>
 
               <p className="mt-3 text-6xl font-black text-[#172033] sm:text-7xl">
@@ -232,7 +240,7 @@ export default async function ComparePage({
               {winner === "A"
                 ? "You Take The Win 🏆"
                 : winner === "B"
-                ? `${celebrityName} Takes The Win 🏆`
+                ? `${actualCelebrityName} Takes The Win 🏆`
                 : "It's A Perfect Tie 🤝"}
 
             </h2>
@@ -345,7 +353,7 @@ export default async function ComparePage({
                 />
 
                 <p className="mt-4 max-w-[150px] text-center font-black uppercase text-[#172033]">
-                  {celebrityName}
+                  {actualCelebrityName}
                   <br />
                   {heightB} CM
                 </p>
@@ -360,7 +368,7 @@ export default async function ComparePage({
           <div className="flex flex-wrap justify-center gap-5 px-6 py-12">
 <Link
   href={`/?heightA=${heightA}&heightB=${heightB}&nameB=${encodeURIComponent(
-    celebrityName
+    actualCelebrityName
   )}`}
   className="border-[4px] border-[#172033] bg-[#ff5a1f] px-7 py-4 font-black uppercase text-white shadow-[6px_6px_0_#172033] transition hover:-translate-y-1 hover:bg-[#b9ef35] hover:text-[#172033]"
 >
