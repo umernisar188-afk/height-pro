@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
 import Script from "next/script";
+import "./globals.css";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -14,8 +15,9 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   icons: {
- icon: "/icon.png?v=2",
-},
+    icon: "/icon.png?v=2",
+  },
+
   title: {
     default: "Height Pro | Compare Heights & Celebrity Heights",
     template: "%s | Height Pro",
@@ -70,47 +72,43 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-BZN1TK2X50"
+          strategy="afterInteractive"
+        />
+
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){window.dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-BZN1TK2X50');
+          `}
+        </Script>
+      </head>
+
       <body className="min-h-full flex flex-col">
-        import Script from "next/script";
+        <nav className="border-b-2 border-slate-200 bg-slate-950 text-white shadow-md">
+          <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
+            <a href="/" className="text-2xl font-black tracking-tight">
+              🏁 Height Pro
+            </a>
 
-...
+            <div className="flex items-center gap-4 text-sm font-medium">
+              <a href="/" className="hover:underline">
+                Home
+              </a>
 
-<body>
+              <a href="/people" className="hover:underline">
+                People
+              </a>
+            </div>
+          </div>
+        </nav>
 
-  <Script
-    src="https://www.googletagmanager.com/gtag/js?id=G-BZN1TK2X50"
-    strategy="afterInteractive"
-  />
-
-  <Script id="google-analytics">
-    {`
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){window.dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-BZN1TK2X50');
-    `}
-  </Script>
-
-  ...
-</body>
-  <nav className="border-b-2 border-slate-200 bg-slate-950 text-white shadow-md">
-    <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
-      <a href="/" className="text-2xl font-black tracking-tight">
-  🏁 Height Pro
-</a>
-      <div className="flex items-center gap-4 text-sm font-medium">
-        <a href="/" className="hover:underline">
-          Home
-        </a>
-        <a href="/people" className="hover:underline">
-          People
-        </a>
-      </div>
-    </div>
-  </nav>
-
-  {children}
-</body>
+        {children}
+      </body>
     </html>
   );
 }
