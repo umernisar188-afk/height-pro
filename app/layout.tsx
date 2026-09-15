@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
+import Script from "next/script";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -71,6 +71,28 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        import Script from "next/script";
+
+...
+
+<body>
+
+  <Script
+    src="https://www.googletagmanager.com/gtag/js?id=G-BZN1TK2X50"
+    strategy="afterInteractive"
+  />
+
+  <Script id="google-analytics">
+    {`
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){window.dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-BZN1TK2X50');
+    `}
+  </Script>
+
+  ...
+</body>
   <nav className="border-b-2 border-slate-200 bg-slate-950 text-white shadow-md">
     <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
       <a href="/" className="text-2xl font-black tracking-tight">
