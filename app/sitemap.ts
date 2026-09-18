@@ -9,6 +9,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
   }));
 
+  const comparisonPairs = [
+    ["lionel-messi", "cristiano-ronaldo"],
+    ["lionel-messi", "kylian-mbappe"],
+    ["cristiano-ronaldo", "kylian-mbappe"],
+    ["lionel-messi", "neymar"],
+    ["kylian-mbappe", "erling-haaland"],
+    ["conor-mcgregor", "khabib-nurmagomedov"],
+    ["jon-jones", "alex-pereira"],
+    ["lebron-james", "stephen-curry"],
+    ["tom-cruise", "dwayne-johnson"],
+    ["shah-rukh-khan", "salman-khan"],
+  ];
+
+  const comparisonUrls = comparisonPairs.map(([personA, personB]) => ({
+    url: `${baseUrl}/compare/${personA}-vs-${personB}`,
+    lastModified: new Date(),
+  }));
+
   return [
     {
       url: baseUrl,
@@ -19,5 +37,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
     },
     ...peopleUrls,
+    ...comparisonUrls,
   ];
 }
