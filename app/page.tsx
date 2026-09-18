@@ -1,9 +1,10 @@
 "use client";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 import confetti from "canvas-confetti";
 
 function Home() {
+  const router = useRouter();
   const searchParams = useSearchParams();
 
   const [heightA, setHeightA] = useState("");
@@ -136,70 +137,25 @@ const cmToFeetInches = (cm: number) => {
   };
 
   const compareWithCelebrity = (
-    celebrityName: string,
-    celebrityHeight: number
-  ) => {
-    const userHeight = parseFloat(heightA);
+  celebrityName: string,
+  celebrityHeight: number,
+  celebritySlug: string
+) => {
+  const userHeight = parseFloat(heightA);
 
-    if (isNaN(userHeight) || userHeight <= 0) {
-      alert("Enter your height first, then choose a celebrity to race against 🏁");
+  if (isNaN(userHeight) || userHeight <= 0) {
+    alert("Enter your height first, then choose a celebrity to race against 🏁");
 
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-
-      return;
-    }
-
-    const userName = nameA || "You";
-
-    setNameB(celebrityName);
-    setHeightB(String(celebrityHeight));
-
-    setShowVS(true);
-    setAnimateBars(false);
-
-    setTimeout(() => {
-      setDifference(Math.abs(userHeight - celebrityHeight));
-      setAnimateBars(true);
-      setResultVisible(true);
-    }, 200);
-
-    let result = "";
-
-    if (userHeight > celebrityHeight) {
-      setScoreA((prev) => prev + 1);
-
-      result = `${userName} (${userHeight}cm) is taller than ${celebrityName} (${celebrityHeight}cm)`;
-    } else if (celebrityHeight > userHeight) {
-      setScoreB((prev) => prev + 1);
-
-      result = `${celebrityName} (${celebrityHeight}cm) is taller than ${userName} (${userHeight}cm)`;
-    } else {
-      result = `${userName} and ${celebrityName} are exactly the same height`;
-    }
-
-    setHistory((prev) => {
-      const updated = [result, ...prev].slice(0, 8);
-
-      localStorage.setItem("history", JSON.stringify(updated));
-
-      return updated;
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
     });
 
-    confetti({
-      particleCount: 150,
-      spread: 100,
-      origin: { y: 0.55 },
-    });
+    return;
+  }
 
-    setTimeout(() => {
-      document.getElementById("result-section")?.scrollIntoView({
-        behavior: "smooth",
-      });
-    }, 300);
-  };
+  router.push(`/compare/${userHeight}cm-vs-${celebritySlug}`);
+};
 const clearAll = () => {
   setHeightA("");
   setHeightB("");
@@ -1196,7 +1152,11 @@ const clearAll = () => {
 
               <button
                 onClick={() =>
-                  compareWithCelebrity("Cristiano Ronaldo", 187)
+compareWithCelebrity(
+  "Cristiano Ronaldo",
+  187,
+  "cristiano-ronaldo"
+)
                 }
                 className="mt-8 w-full rounded-xl border border-[#39ff88]/30 bg-gradient-to-br from-[#39ff88]/18 via-[#eaffd8]/45 to-white/70 px-5 py-4 font-black uppercase text-[#39ff88] transition hover:bg-[#39ff88] hover:text-[#07111f]"
               >
@@ -1258,7 +1218,7 @@ const clearAll = () => {
 
               <button
                 onClick={() =>
-                  compareWithCelebrity("Lionel Messi", 170)
+                  compareWithCelebrity("Lionel Messi", 170, "lionel-messi")
                 }
                 className="mt-8 w-full rounded-xl border border-[#ffd43b]/30 bg-gradient-to-br from-[#ffd43b]/18 via-[#fff8d6]/55 to-white/70 px-5 py-4 font-black uppercase text-[#ffd43b] transition hover:bg-[#ffd43b] hover:text-[#07111f]"
               >
@@ -1320,7 +1280,7 @@ const clearAll = () => {
 
               <button
                 onClick={() =>
-                  compareWithCelebrity("Conor McGregor", 175)
+                  compareWithCelebrity("Conor McGregor", 175, "conor-mcgregor")
                 }
                 className="mt-8 w-full rounded-xl border border-[#ff7a45]/30 bg-gradient-to-br from-[#ff7a45]/18 via-[#fff0e8]/55 to-white/70 px-5 py-4 font-black uppercase text-[#ff9d6b] transition hover:bg-[#ff7a45] hover:text-[#07111f]"
               >
