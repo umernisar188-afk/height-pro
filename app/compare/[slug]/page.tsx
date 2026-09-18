@@ -13,15 +13,37 @@ export async function generateMetadata({
 
   const parts = slug.split("-vs-");
 
-const a = parts[0]?.replace("cm", "").trim() || "0";
-const b = parts[1]?.replace("cm", "").trim() || "0";
+  const firstPart = parts[0] || "";
+  const secondPart = parts[1] || "";
 
-const person = people.find((p) => p.slug === b);
+  const firstPerson = people.find((p) => p.slug === firstPart);
+  const secondPerson = people.find((p) => p.slug === secondPart);
 
-const celebrityName = name || person?.name || `${b}cm`;
+  if (firstPerson && secondPerson) {
+    return {
+      title: `${firstPerson.name} vs ${secondPerson.name} Height Comparison`,
+      description: `Compare ${firstPerson.name} and ${secondPerson.name}. See their heights, the exact difference, who is taller, and a visual height comparison on Height Pro.`,
+    };
+  }
+
+  const celebrityName = name || secondPerson?.name || `${secondPart} Height`;
+
+  if (secondPerson) {
+    return {
+      title: `${celebrityName} Height Comparison`,
+      description: `Compare your height with ${celebrityName}. See the exact height difference, who is taller, and a visual height comparison on Height Pro.`,
+    };
+  }
+
+  const heightA =
+    Number(firstPart.replace("cm", "").trim()) || 0;
+
+  const heightB =
+    Number(secondPart.replace("cm", "").trim()) || 0;
+
   return {
-    title: `${celebrityName} Height Comparison | Height Pro`,
-    description: `Compare your height with ${celebrityName}. See the exact height difference, who is taller, and a visual height comparison on Height Pro.`,
+    title: `${heightA}cm vs ${heightB}cm Height Comparison`,
+    description: `Compare ${heightA}cm and ${heightB}cm instantly. See who is taller and the exact height difference.`,
   };
 }
 
@@ -35,21 +57,31 @@ export default async function ComparePage({
   const { slug } = await params;
   const { name } = await searchParams;
 
-  const celebrityName = name || "Person B";
-
   const parts = slug.split("-vs-");
 
-const heightA = Number(parts[0]?.replace("cm", "").trim()) || 0;
+  const firstPart = parts[0] || "";
+  const secondPart = parts[1] || "";
 
-const person = people.find((p) => p.slug === parts[1]);
+  const firstPerson = people.find((p) => p.slug === firstPart);
+  const secondPerson = people.find((p) => p.slug === secondPart);
 
-const heightB = person
-  ? person.heightCm
-  : Number(parts[1]?.replace("cm", "").trim()) || 0;
+  const heightA = firstPerson
+    ? firstPerson.heightCm
+    : Number(firstPart.replace("cm", "").trim()) || 0;
 
-const actualCelebrityName = person?.name || celebrityName;
+  const heightB = secondPerson
+    ? secondPerson.heightCm
+    : Number(secondPart.replace("cm", "").trim()) || 0;
+
+  const displayNameA = firstPerson?.name || "You";
+  const displayNameB = secondPerson?.name || name || "Person B";
+
   const winner =
-    heightA > heightB ? "A" : heightB > heightA ? "B" : "tie";
+    heightA > heightB
+      ? "A"
+      : heightB > heightA
+      ? "B"
+      : "tie";
 
   const difference = Math.abs(heightA - heightB);
 
@@ -145,7 +177,7 @@ const actualCelebrityName = person?.name || celebrityName;
           {/* COMPETITORS */}
           <div className="relative mt-12 grid grid-cols-1 gap-6 px-6 sm:grid-cols-[1fr_auto_1fr] sm:px-10">
 
-            {/* YOU */}
+            {/* FIRST PERSON */}
             <div
               className={`border-[4px] border-[#172033] p-6 text-center shadow-[6px_6px_0_#172033] ${
                 winner === "A"
@@ -157,7 +189,7 @@ const actualCelebrityName = person?.name || celebrityName;
             >
 
               <p className="text-sm font-black uppercase tracking-[0.2em] text-[#172033]/60">
-                You
+                {displayNameA}
               </p>
 
               <p className="mt-3 text-6xl font-black text-[#172033] sm:text-7xl">
@@ -190,7 +222,7 @@ const actualCelebrityName = person?.name || celebrityName;
 
             </div>
 
-            {/* CELEBRITY */}
+            {/* SECOND PERSON */}
             <div
               className={`border-[4px] border-[#172033] p-6 text-center shadow-[6px_6px_0_#172033] ${
                 winner === "B"
@@ -202,7 +234,7 @@ const actualCelebrityName = person?.name || celebrityName;
             >
 
               <p className="text-sm font-black uppercase tracking-[0.2em] text-[#172033]/60">
-                {actualCelebrityName}
+                {displayNameB}
               </p>
 
               <p className="mt-3 text-6xl font-black text-[#172033] sm:text-7xl">
@@ -238,29 +270,18 @@ const actualCelebrityName = person?.name || celebrityName;
             <h2 className="mt-4 text-3xl font-black uppercase sm:text-5xl">
 
               {winner === "A"
-                ? "You Take The Win 🏆"
+                ? `${displayNameA} Takes The Win 🏆`
                 : winner === "B"
-                ? `${actualCelebrityName} Takes The Win 🏆`
+                ? `${displayNameB} Takes The Win 🏆`
                 : "It's A Perfect Tie 🤝"}
 
             </h2>
 
             <p className="mt-4 text-lg font-bold text-white/70">
-              {winner === "tie" ? (
-                <>
-                  Height difference:
-                  <span className="ml-2 text-[#ffd43b]">
-                    0 CM
-                  </span>
-                </>
-              ) : (
-                <>
-                  Height difference:
-                  <span className="ml-2 text-[#ffd43b]">
-                    {difference} CM
-                  </span>
-                </>
-              )}
+              Height difference:
+              <span className="ml-2 text-[#ffd43b]">
+                {difference} CM
+              </span>
             </p>
 
           </div>
@@ -282,7 +303,7 @@ const actualCelebrityName = person?.name || celebrityName;
 
             <div className="mt-10 flex h-80 items-end justify-center gap-8 border-b-[5px] border-dashed border-[#172033] px-2 sm:gap-28 sm:px-4">
 
-              {/* YOU BAR */}
+              {/* FIRST PERSON BAR */}
               <div className="flex h-full flex-col items-center justify-end">
 
                 {winner === "A" && (
@@ -314,14 +335,14 @@ const actualCelebrityName = person?.name || celebrityName;
                 />
 
                 <p className="mt-4 text-center font-black uppercase text-[#172033]">
-                  You
+                  {displayNameA}
                   <br />
                   {heightA} CM
                 </p>
 
               </div>
 
-              {/* CELEBRITY BAR */}
+              {/* SECOND PERSON BAR */}
               <div className="flex h-full flex-col items-center justify-end">
 
                 {winner === "B" && (
@@ -353,7 +374,7 @@ const actualCelebrityName = person?.name || celebrityName;
                 />
 
                 <p className="mt-4 max-w-[150px] text-center font-black uppercase text-[#172033]">
-                  {actualCelebrityName}
+                  {displayNameB}
                   <br />
                   {heightB} CM
                 </p>
@@ -366,14 +387,15 @@ const actualCelebrityName = person?.name || celebrityName;
 
           {/* ACTIONS */}
           <div className="flex flex-wrap justify-center gap-5 px-6 py-12">
-<Link
-  href={`/?heightA=${heightA}&heightB=${heightB}&nameB=${encodeURIComponent(
-    actualCelebrityName
-  )}`}
-  className="border-[4px] border-[#172033] bg-[#ff5a1f] px-7 py-4 font-black uppercase text-white shadow-[6px_6px_0_#172033] transition hover:-translate-y-1 hover:bg-[#b9ef35] hover:text-[#172033]"
->
-  ← Compare Again
-</Link>
+
+            <Link
+              href={`/?heightA=${heightA}&heightB=${heightB}&nameB=${encodeURIComponent(
+                displayNameB
+              )}`}
+              className="border-[4px] border-[#172033] bg-[#ff5a1f] px-7 py-4 font-black uppercase text-white shadow-[6px_6px_0_#172033] transition hover:-translate-y-1 hover:bg-[#b9ef35] hover:text-[#172033]"
+            >
+              ← Compare Again
+            </Link>
 
             <Link
               href="/people"
