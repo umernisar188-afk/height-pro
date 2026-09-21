@@ -28,7 +28,7 @@ export async function generateMetadata({
   const heightFeet = cmToFeetInches(person.heightCm);
 
   return {
-    title: `${person.name} Height: ${person.heightCm} cm | Height Pro`,
+    title: `${person.name} Height: ${person.heightCm} cm`,
     description: `How tall is ${person.name}? ${person.name} is listed at ${person.heightCm} cm (${heightFeet}). Compare your height with ${person.name} and other athletes, celebrities, and public figures on Height Pro.`,
   };
 }
