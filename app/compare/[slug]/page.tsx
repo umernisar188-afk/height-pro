@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { people } from "../../data/people";
 
 export async function generateMetadata({
@@ -19,6 +20,15 @@ export async function generateMetadata({
   const firstPerson = people.find((p) => p.slug === firstPart);
   const secondPerson = people.find((p) => p.slug === secondPart);
 
+  const firstHeight = firstPerson
+    ? firstPerson.heightCm
+    : Number(firstPart.replace("cm", "").trim()) || 0;
+
+  const secondHeight = secondPerson
+    ? secondPerson.heightCm
+    : Number(secondPart.replace("cm", "").trim()) || 0;
+
+  // Named person vs named person
   if (firstPerson && secondPerson) {
     return {
       title: `${firstPerson.name} vs ${secondPerson.name} Height Comparison`,
@@ -26,24 +36,19 @@ export async function generateMetadata({
     };
   }
 
-  const celebrityName = name || secondPerson?.name || `${secondPart} Height`;
-
-  if (secondPerson) {
+  // Height vs person
+  if (firstHeight > 0 && secondPerson) {
     return {
-      title: `${celebrityName} Height Comparison`,
-      description: `Compare your height with ${celebrityName}. See the exact height difference, who is taller, and a visual height comparison on Height Pro.`,
+      title: `${firstHeight}cm vs ${secondPerson.name} Height Comparison`,
+      description: `Compare ${firstHeight}cm with ${secondPerson.name}. See the exact height difference, who is taller, and a visual height comparison on Height Pro.`,
     };
   }
 
-  const heightA =
-    Number(firstPart.replace("cm", "").trim()) || 0;
-
-  const heightB =
-    Number(secondPart.replace("cm", "").trim()) || 0;
-
+  // Invalid URL
   return {
-    title: `${heightA}cm vs ${heightB}cm Height Comparison`,
-    description: `Compare ${heightA}cm and ${heightB}cm instantly. See who is taller and the exact height difference.`,
+    title: "Height Comparison | Height Pro",
+    description:
+      "Compare heights of celebrities, athletes, and public figures with Height Pro.",
   };
 }
 
@@ -72,6 +77,21 @@ export default async function ComparePage({
   const heightB = secondPerson
     ? secondPerson.heightCm
     : Number(secondPart.replace("cm", "").trim()) || 0;
+
+  // Valid formats:
+  // 1. person-vs-person
+  // 2. height-vs-person
+  //
+  // Everything else should be a 404.
+  const validPersonVsPerson =
+    Boolean(firstPerson && secondPerson);
+
+  const validHeightVsPerson =
+    heightA > 0 && Boolean(secondPerson);
+
+  if (!validPersonVsPerson && !validHeightVsPerson) {
+    notFound();
+  }
 
   const displayNameA = firstPerson?.name || "You";
   const displayNameB = secondPerson?.name || name || "Person B";
