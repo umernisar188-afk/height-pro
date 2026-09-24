@@ -40,6 +40,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/compare`,
       lastModified: new Date(),
     },
+    {
+  url: `${baseUrl}/blog/how-accurate-are-celebrity-height`,
+  lastModified: new Date(),
+},
     ...peopleUrls,
     ...comparisonUrls,
   ];

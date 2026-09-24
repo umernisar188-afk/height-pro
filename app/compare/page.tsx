@@ -205,7 +205,28 @@ export default function CompareHubPage() {
           </div>
 
         </section>
+{/* HEIGHT GUIDE */}
+<section className="mt-14 border-[3px] border-[#172033] bg-[#ffd43b]/45 p-7 shadow-[6px_6px_0_#172033] sm:p-9">
+  <p className="font-black uppercase tracking-[0.25em] text-[#ff5a1f]">
+    Height Pro Guide
+  </p>
 
+  <h2 className="mt-3 text-3xl font-black uppercase text-[#172033] sm:text-4xl">
+    How Accurate Are Celebrity Heights?
+  </h2>
+
+  <p className="mt-4 max-w-3xl text-lg leading-8 text-[#172033]/70">
+    Celebrity heights can differ between sources. Learn why listed heights
+    may vary and how to interpret height comparisons.
+  </p>
+
+  <Link
+    href="/blog/how-accurate-are-celebrity-height"
+    className="mt-6 inline-flex border-[3px] border-[#172033] bg-white px-6 py-3 font-black uppercase text-[#172033] shadow-[4px_4px_0_#172033] transition hover:-translate-y-1 hover:bg-[#b9ef35]"
+  >
+    Read The Guide →
+  </Link>
+</section>
         {/* HOW IT WORKS */}
         <section className="mt-14 grid gap-6 sm:grid-cols-3">
 
