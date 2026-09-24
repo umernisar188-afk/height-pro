@@ -216,15 +216,21 @@ const categories = [
         )}
 
         {/* BOTTOM ACTION */}
-        <div className="mt-12 text-center">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 border-[3px] border-[#172033] bg-white/60 px-7 py-4 font-black uppercase text-[#172033] shadow-[5px_5px_0_#172033] backdrop-blur-xl transition hover:-translate-y-1 hover:bg-[#b9ef35]"
-          >
-            ← Back To Height Race
-          </Link>
-        </div>
+       <div className="mt-12 flex flex-wrap justify-center gap-4">
+  <Link
+    href="/compare"
+    className="inline-flex items-center gap-2 border-[3px] border-[#172033] bg-[#b9ef35] px-7 py-4 font-black uppercase text-[#172033] shadow-[5px_5px_0_#172033] transition hover:-translate-y-1 hover:bg-[#ffd43b]"
+  >
+    🏁 Compare Celebrity Heights →
+  </Link>
 
+  <Link
+    href="/"
+    className="inline-flex items-center gap-2 border-[3px] border-[#172033] bg-white/60 px-7 py-4 font-black uppercase text-[#172033] shadow-[5px_5px_0_#172033] backdrop-blur-xl transition hover:-translate-y-1 hover:bg-[#b9ef35]"
+  >
+    ← Back To Height Race
+  </Link>
+</div>
         <p className="mt-10 text-center text-xs font-black uppercase tracking-[0.3em] text-[#172033]/40">
           Search · Compare · Race
         </p>
