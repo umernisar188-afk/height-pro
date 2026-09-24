@@ -36,6 +36,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/people`,
       lastModified: new Date(),
     },
+    {
+      url: `${baseUrl}/compare`,
+      lastModified: new Date(),
+    },
     ...peopleUrls,
     ...comparisonUrls,
   ];
