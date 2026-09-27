@@ -1,5 +1,6 @@
 "use client";
 import { useRouter, useSearchParams } from "next/navigation";
+import Link from "next/link";
 import { Suspense, useEffect, useState } from "react";
 import confetti from "canvas-confetti";
 
@@ -1297,7 +1298,32 @@ compareWithCelebrity(
 
       </section>
 
+{/* ALL HEIGHT COMPARISONS */}
+<section className="relative px-4 pb-12 sm:px-6">
+  <div className="mx-auto max-w-6xl text-center">
+    <p className="font-black uppercase tracking-[0.2em] text-[#ff5a1f]">
+      Want More Matchups?
+    </p>
 
+    <h2 className="mt-3 text-3xl font-black uppercase text-[#172033] sm:text-4xl">
+      Explore Celebrity Height Comparisons
+    </h2>
+
+    <p className="mx-auto mt-3 max-w-2xl text-base leading-7 text-[#172033]/70">
+      Compare the heights of famous athletes, celebrities, fighters, and
+      public figures in detailed head-to-head height battles.
+    </p>
+
+    <div className="mt-6">
+      <Link
+        href="/compare"
+        className="inline-flex items-center justify-center border-[3px] border-[#172033] bg-[#b9ef35] px-6 py-4 font-black uppercase tracking-wide text-[#172033] shadow-[4px_4px_0_#172033] transition hover:-translate-y-1 hover:bg-[#ffd43b]"
+      >
+        Explore All Height Comparisons →
+      </Link>
+    </div>
+  </div>
+</section>
 
       {/* HISTORY */}
 
