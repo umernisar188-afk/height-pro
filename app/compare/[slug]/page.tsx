@@ -1,16 +1,12 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { people } from "../../data/people";
-
 export async function generateMetadata({
   params,
-  searchParams,
 }: {
   params: Promise<{ slug: string }>;
-  searchParams: Promise<{ name?: string }>;
 }) {
   const { slug } = await params;
-  const { name } = await searchParams;
 
   const parts = slug.split("-vs-");
 
@@ -28,28 +24,36 @@ export async function generateMetadata({
     ? secondPerson.heightCm
     : Number(secondPart.replace("cm", "").trim()) || 0;
 
-  // Named person vs named person
   if (firstPerson && secondPerson) {
+    const difference = Math.abs(firstHeight - secondHeight);
+
     return {
-      title: `${firstPerson.name} vs ${secondPerson.name} Height Comparison`,
-      description: `Compare ${firstPerson.name} and ${secondPerson.name}. See their heights, the exact difference, who is taller, and a visual height comparison on Height Pro.`,
+      title: `${firstPerson.name} vs ${secondPerson.name} Height | Height Pro`,
+      description: `Compare ${firstPerson.name} and ${secondPerson.name} heights. ${firstPerson.name} is ${firstHeight} cm and ${secondPerson.name} is ${secondHeight} cm, a difference of ${difference} cm. See the visual height comparison on Height Pro.`,
     };
   }
 
-  // Height vs person
   if (firstHeight > 0 && secondPerson) {
+    const difference = Math.abs(firstHeight - secondHeight);
+
     return {
-      title: `${firstHeight}cm vs ${secondPerson.name} Height Comparison`,
-      description: `Compare ${firstHeight}cm with ${secondPerson.name}. See the exact height difference, who is taller, and a visual height comparison on Height Pro.`,
+      title: `${firstHeight}cm vs ${secondPerson.name} Height | Height Pro`,
+      description: `Compare ${firstHeight} cm with ${secondPerson.name}. See the exact height difference, who is taller, and the visual height comparison on Height Pro.`,
     };
   }
-
-  // Invalid URL
   return {
     title: "Height Comparison | Height Pro",
     description:
-      "Compare heights of celebrities, athletes, and public figures with Height Pro.",
+      "Compare heights visually and see the exact difference between two people.",
   };
+}
+
+function formatFeetInches(cm: number) {
+  const totalInches = Math.round(cm / 2.54);
+  const feet = Math.floor(totalInches / 12);
+  const inches = totalInches % 12;
+
+  return `${feet} ft ${inches} in`;
 }
 
 export default async function ComparePage({
@@ -180,13 +184,11 @@ export default async function ComparePage({
             <p className="mt-8 font-black uppercase tracking-[0.3em] text-[#ff5a1f]">
               Head To Head
             </p>
-
-            <h1 className="mt-4 text-5xl font-black uppercase leading-[0.9] tracking-tight text-[#172033] sm:text-7xl">
-              Height
-              <span className="ml-3 text-[#ff5a1f]">
-                Battle
-              </span>
-            </h1>
+<h1 className="mt-4 text-4xl font-black uppercase leading-[0.95] tracking-tight text-[#172033] sm:text-6xl">
+  {firstPerson && secondPerson
+    ? `${firstPerson.name} vs ${secondPerson.name} Height`
+    : `${displayNameA} vs ${displayNameB} Height`}
+</h1>
 
             <p className="mx-auto mt-6 max-w-2xl text-lg font-medium text-[#172033]/60">
               Two heights enter the race. Only one can take the podium.
@@ -213,7 +215,7 @@ export default async function ComparePage({
               </p>
 
               <p className="mt-3 text-6xl font-black text-[#172033] sm:text-7xl">
-                {heightA}
+                {formatFeetInches(heightA)}
                 <span className="ml-2 text-2xl">
                   CM
                 </span>
@@ -258,7 +260,7 @@ export default async function ComparePage({
               </p>
 
               <p className="mt-3 text-6xl font-black text-[#172033] sm:text-7xl">
-                {heightB}
+                {formatFeetInches(heightB)}
                 <span className="ml-2 text-2xl">
                   CM
                 </span>
@@ -404,6 +406,114 @@ export default async function ComparePage({
             </div>
 
           </div>
+{/* SEO COMPARISON DETAILS */}
+{firstPerson && secondPerson && (
+  <section className="mx-6 mt-10 border-[4px] border-[#172033] bg-white p-6 sm:mx-10 sm:p-10">
+    <p className="font-black uppercase tracking-[0.25em] text-[#ff5a1f]">
+      Height Comparison
+    </p>
+
+    <h2 className="mt-3 text-3xl font-black uppercase text-[#172033] sm:text-4xl">
+      {firstPerson.name} vs {secondPerson.name} Height
+    </h2>
+
+    <p className="mt-5 max-w-3xl text-lg leading-8 text-[#172033]/70">
+  {firstPerson.name} is listed at {heightA} cm (
+  {formatFeetInches(heightA)}), while {secondPerson.name} is listed at{" "}
+  {heightB} cm ({formatFeetInches(heightB)}). The difference between them is{" "}
+  {difference} cm.
+</p>
+
+    <div className="mt-8 grid gap-5 sm:grid-cols-2">
+      <Link
+        href={`/people/${firstPerson.slug}`}
+        className="border-[3px] border-[#172033] bg-[#f7f2e8] p-5 shadow-[4px_4px_0_#172033] transition hover:-translate-y-1 hover:bg-[#b9ef35]"
+      >
+        <p className="text-xs font-black uppercase tracking-widest text-[#ff5a1f]">
+          Listed Height
+        </p>
+
+        <h3 className="mt-2 text-2xl font-black uppercase text-[#172033]">
+          {firstPerson.name}
+        </h3>
+
+        <p className="mt-2 text-lg font-bold text-[#172033]/65">
+  {heightA} cm · {formatFeetInches(heightA)}
+</p>
+
+        <p className="mt-4 font-black uppercase text-[#172033]">
+          View Height Profile →
+        </p>
+      </Link>
+
+      <Link
+        href={`/people/${secondPerson.slug}`}
+        className="border-[3px] border-[#172033] bg-[#f7f2e8] p-5 shadow-[4px_4px_0_#172033] transition hover:-translate-y-1 hover:bg-[#b9ef35]"
+      >
+        <p className="text-xs font-black uppercase tracking-widest text-[#ff5a1f]">
+          Listed Height
+        </p>
+
+        <h3 className="mt-2 text-2xl font-black uppercase text-[#172033]">
+          {secondPerson.name}
+        </h3>
+
+        <p className="mt-2 text-lg font-bold text-[#172033]/65">
+          {heightB} cm · {formatFeetInches(heightB)}
+        </p>
+
+        <p className="mt-4 font-black uppercase text-[#172033]">
+          View Height Profile →
+        </p>
+      </Link>
+    </div>
+
+    <div className="mt-8 border-[3px] border-[#172033] bg-[#ffd43b]/40 p-5">
+      <h3 className="text-xl font-black uppercase text-[#172033]">
+        Height Difference
+      </h3>
+
+      <p className="mt-2 text-lg leading-8 text-[#172033]/70">
+        {firstPerson.name} and {secondPerson.name} have a height difference
+        of <strong>{difference} cm</strong>.{" "}
+        {winner === "A"
+          ? `${firstPerson.name} is taller in this comparison.`
+          : winner === "B"
+          ? `${secondPerson.name} is taller in this comparison.`
+          : "They are the same listed height in this comparison."}
+      </p>
+    </div>
+  </section>
+)}
+{/* RELATED COMPARISONS */}
+<section className="mx-6 mt-10 border-[4px] border-[#172033] bg-[#f7f2e8] p-6 sm:mx-10 sm:p-8">
+  <p className="font-black uppercase tracking-[0.25em] text-[#ff5a1f]">
+    More Height Comparisons
+  </p>
+
+  <h2 className="mt-3 text-3xl font-black uppercase text-[#172033]">
+    More Celebrity Height Battles
+  </h2>
+
+  <div className="mt-6 grid gap-3 sm:grid-cols-2">
+    {[
+      ["lionel-messi", "cristiano-ronaldo", "Lionel Messi vs Cristiano Ronaldo"],
+      ["lionel-messi", "kylian-mbappe", "Lionel Messi vs Kylian Mbappé"],
+      ["kylian-mbappe", "erling-haaland", "Kylian Mbappé vs Erling Haaland"],
+      ["lebron-james", "stephen-curry", "LeBron James vs Stephen Curry"],
+    ]
+      .filter(([first, second]) => slug !== `${first}-vs-${second}`)
+      .map(([first, second, label]) => (
+        <Link
+          key={`${first}-vs-${second}`}
+          href={`/compare/${first}-vs-${second}`}
+          className="border-[3px] border-[#172033] bg-white p-4 font-black uppercase text-[#172033] shadow-[3px_3px_0_#172033] transition hover:-translate-y-1 hover:bg-[#b9ef35]"
+        >
+          {label} →
+        </Link>
+      ))}
+  </div>
+</section>
 
           {/* ACTIONS */}
           <div className="flex flex-wrap justify-center gap-5 px-6 py-12">
