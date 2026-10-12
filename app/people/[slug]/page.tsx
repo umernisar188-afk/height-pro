@@ -196,7 +196,44 @@ export default async function PersonPage({
               </p>
 
             </div>
+{/* HEIGHT SOURCES: LIONEL MESSI */}
+{person.slug === "lionel-messi" && (
+  <section className="mt-10 max-w-3xl border border-white/80 bg-white/60 p-6 shadow-lg backdrop-blur-xl">
+    <p className="text-sm font-black uppercase tracking-[0.2em] text-[#ff5a1f]">
+      Height Sources
+    </p>
 
+    <h2 className="mt-3 text-2xl font-black uppercase text-[#172033]">
+      Sources for Lionel Messi's Listed Height
+    </h2>
+
+    <p className="mt-4 text-base leading-7 text-[#172033]/70">
+      FC Barcelona lists Lionel Messi's height as 170 cm, while Inter
+      Miami lists it as 5 ft 7 in. These are compatible rounded
+      presentations of his listed height.
+    </p>
+
+    <div className="mt-5 flex flex-wrap gap-5">
+      <a
+        href="https://www.fcbarcelona.com/en/football/first-team/players/4974/lionel-andres-messi"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="font-bold text-[#172033] underline decoration-2 underline-offset-4 hover:text-[#ff5a1f]"
+      >
+        FC Barcelona Official Profile ↗
+      </a>
+
+      <a
+        href="https://www.intermiamicf.com/players/lionel-messi/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="font-bold text-[#172033] underline decoration-2 underline-offset-4 hover:text-[#ff5a1f]"
+      >
+        Inter Miami Official Profile ↗
+      </a>
+    </div>
+  </section>
+)}
             {/* QUICK FACTS */}
             <div className="mt-10 grid gap-4 sm:grid-cols-3">
 
