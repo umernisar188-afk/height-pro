@@ -104,10 +104,6 @@ export default function ContactPage() {
             Email Height Pro →
           </a>
 
-          <p className="mt-4 text-sm text-[#172033]/70">
-            Replace the example email address in the page code with
-            your actual public contact email before publishing.
-          </p>
         </section>
 
         {/* PRIVACY */}
