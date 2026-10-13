@@ -42,47 +42,83 @@ export default function PrivacyPolicyPage() {
             with the website.
           </p>
         </section>
+<section className="mt-8">
+  <h2 className="text-2xl font-black">
+    2. Analytics and Cookies
+  </h2>
 
-        <section className="mt-8">
-          <h2 className="text-2xl font-black">
-            2. Analytics and Cookies
-          </h2>
-          <p className="mt-3 leading-7 text-[#172033]/80">
-            We use website analytics to understand how visitors use Height Pro
-            and to improve its content and functionality. Analytics services
-            may use cookies or similar technologies to collect usage
-            information.
-          </p>
-          <p className="mt-3 leading-7 text-[#172033]/80">
-            You can manage or disable cookies through your browser settings.
-            Some website functionality may be affected by your choices.
-          </p>
-        </section>
+  <p className="mt-3 leading-7 text-[#172033]/80">
+    Height Pro uses Google Analytics to understand how visitors use
+    the website and to improve its content and functionality. Google
+    Analytics may process information such as pages visited, browser
+    and device information, referring pages, and interactions with the
+    website. Cookies or similar technologies may be used for this purpose.
+  </p>
 
-        <section className="mt-8">
-          <h2 className="text-2xl font-black">3. Advertising</h2>
-          <p className="mt-3 leading-7 text-[#172033]/80">
-            If advertising services such as Google AdSense are enabled,
-            Google and other advertising partners may use cookies, web
-            beacons, IP addresses, or similar technologies to serve and
-            measure advertisements. Where permitted and applicable, these
-            technologies may also be used for personalized advertising.
-          </p>
-          <p className="mt-3 leading-7 text-[#172033]/80">
-            Learn how Google uses information on websites that use its
-            services in{" "}
-            <a
-              href="https://policies.google.com/technologies/partner-sites"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold underline underline-offset-4"
-            >
-              How Google uses information from sites or apps that use its
-              services
-            </a>.
-          </p>
-        </section>
+  <p className="mt-3 leading-7 text-[#172033]/80">
+    Google processes information according to its applicable policies.
+    You can learn more about how Google uses information from websites
+    that use its services in{" "}
+    <a
+      href="https://policies.google.com/technologies/partner-sites"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="font-bold underline underline-offset-4"
+    >
+      How Google uses information from sites or apps that use its services
+    </a>.
+  </p>
+</section>
 
+<section className="mt-8">
+  <h2 className="text-2xl font-black">
+    3. Advertising and Personalized Ads
+  </h2>
+
+  <p className="mt-3 leading-7 text-[#172033]/80">
+    Height Pro does not currently display Google AdSense advertisements.
+    If advertising services are introduced, third-party vendors,
+    including Google, may use cookies, web beacons, IP addresses, or
+    similar identifiers to serve and measure advertisements.
+  </p>
+
+  <p className="mt-3 leading-7 text-[#172033]/80">
+    When Google advertising is enabled, Google and its partners may use
+    advertising cookies to serve advertisements based on a visitor's
+    previous visits to Height Pro or other websites. Where applicable,
+    advertising partners may also use these technologies for personalized
+    advertising.
+  </p>
+
+  <p className="mt-3 leading-7 text-[#172033]/80">
+    Users can manage personalized advertising through{" "}
+    <a
+      href="https://adssettings.google.com/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="font-bold underline underline-offset-4"
+    >
+      Google Ads Settings
+    </a>.
+    Users may also visit{" "}
+    <a
+      href="https://www.aboutads.info/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="font-bold underline underline-offset-4"
+    >
+      the Digital Advertising Alliance's consumer information website
+    </a>{" "}
+    to learn about opting out of certain participating companies'
+    personalized advertising.
+  </p>
+
+  <p className="mt-3 leading-7 text-[#172033]/80">
+    If additional advertising vendors or networks are used, this policy
+    will be updated as appropriate to identify those services and provide
+    relevant privacy information.
+  </p>
+</section>
         <section className="mt-8">
           <h2 className="text-2xl font-black">
             4. Third-Party Services and Links
