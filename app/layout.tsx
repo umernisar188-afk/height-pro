@@ -89,6 +89,7 @@ export default function RootLayout({
       </head>
 
       <body className="min-h-full flex flex-col">
+        {/* MAIN NAVIGATION */}
         <nav className="border-b-2 border-slate-200 bg-slate-950 text-white shadow-md">
           <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
             <a href="/" className="text-2xl font-black tracking-tight">
@@ -107,7 +108,50 @@ export default function RootLayout({
           </div>
         </nav>
 
+        {/* PAGE CONTENT */}
         {children}
+
+        {/* SITE FOOTER */}
+        <footer className="mt-auto border-t-2 border-slate-200 bg-slate-950 text-white">
+          <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 py-8 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <a
+                href="/"
+                className="text-xl font-black tracking-tight hover:underline"
+              >
+                🏁 Height Pro
+              </a>
+
+              <p className="mt-2 max-w-md text-sm leading-6 text-slate-300">
+                Explore celebrity heights, discover height differences,
+                and compare yourself with your favorite public figures.
+              </p>
+            </div>
+
+            <nav
+              aria-label="Footer navigation"
+              className="flex flex-wrap gap-x-6 gap-y-3 text-sm font-medium"
+            >
+              <a href="/about" className="hover:underline">
+                About
+              </a>
+
+              <a href="/contact" className="hover:underline">
+                Contact
+              </a>
+
+              <a href="/privacy-policy" className="hover:underline">
+                Privacy Policy
+              </a>
+            </nav>
+          </div>
+
+          <div className="border-t border-white/10">
+            <p className="mx-auto max-w-7xl px-4 py-4 text-xs text-slate-400">
+              © {new Date().getFullYear()} Height Pro. All rights reserved.
+            </p>
+          </div>
+        </footer>
       </body>
     </html>
   );

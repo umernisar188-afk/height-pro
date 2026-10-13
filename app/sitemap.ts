@@ -27,7 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
   }));
 
-  return [
+  const staticPages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
       lastModified: new Date(),
@@ -41,10 +41,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
     },
     {
-  url: `${baseUrl}/blog/how-accurate-are-celebrity-height`,
-  lastModified: new Date(),
-},
-    ...peopleUrls,
-    ...comparisonUrls,
+      url: `${baseUrl}/blog/how-accurate-are-celebrity-height`,
+      lastModified: new Date(),
+    },
+    {
+      url: `${baseUrl}/about`,
+      lastModified: new Date(),
+    },
+    {
+      url: `${baseUrl}/contact`,
+      lastModified: new Date(),
+    },
+    {
+      url: `${baseUrl}/privacy-policy`,
+      lastModified: new Date(),
+    },
   ];
+
+  return [...staticPages, ...peopleUrls, ...comparisonUrls];
 }
