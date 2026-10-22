@@ -103,9 +103,22 @@ export default function CelebrityHeightAccuracyPage() {
               </p>
 
               <p className="mt-4 text-lg leading-8 text-[#172033]/70">
-                In one adult study, participants lost an average of about
-                6.9 millimeters for men and 7.4 millimeters for women between
-                measurements taken roughly seven hours apart.
+               <p className="mt-4 text-lg leading-8 text-[#172033]/70">
+  In a small study involving 34 participants, average height
+  decreased by about 6.9 millimeters for men and 7.4 millimeters
+  for women over a mean interval of approximately seven hours.
+  These findings illustrate how measurement timing can affect
+  recorded height, although the results should not be treated
+  as a universal estimate for everyone.{" "}
+  <a
+    href="https://pubmed.ncbi.nlm.nih.gov/28400060/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="font-bold text-[#ff5a1f] underline"
+  >
+    Read the study on diurnal height variation.
+  </a>
+</p>
               </p>
 
               <p className="mt-4 text-lg leading-8 text-[#172033]/70">
@@ -277,7 +290,7 @@ export default function CelebrityHeightAccuracyPage() {
                     rel="noopener noreferrer"
                     className="font-bold text-[#ff5a1f] underline"
                   >
-                    CDC: Measuring height accurately
+                    CDC: Measuring Children's Height and Weight
                   </a>
                 </li>
 
