@@ -234,6 +234,44 @@ export default async function PersonPage({
     </div>
   </section>
 )}
+{/* HEIGHT SOURCES: KYLIAN MBAPPE */}
+{person.slug === "kylian-mbappe" && (
+  <section className="mt-10 max-w-3xl border border-white/80 bg-white/60 p-6 shadow-lg backdrop-blur-xl">
+    <p className="text-sm font-black uppercase tracking-[0.2em] text-[#ff5a1f]">
+      Height Sources
+    </p>
+
+    <h2 className="mt-3 text-2xl font-black uppercase text-[#172033]">
+      Sources for Kylian Mbappé's Listed Height
+    </h2>
+
+    <p className="mt-4 text-base leading-7 text-[#172033]/70">
+      Real Madrid lists Kylian Mbappé's height as 1.78 metres,
+      while LaLiga lists it as 178 cm. Both sources report the
+      same height in different units.
+    </p>
+
+    <div className="mt-5 flex flex-wrap gap-5">
+      <a
+        href="https://www.realmadrid.com/en-US/football/first-team/players/kylian-mbappe"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="font-bold text-[#172033] underline decoration-2 underline-offset-4 hover:text-[#ff5a1f]"
+      >
+        Real Madrid Official Profile ↗
+      </a>
+
+      <a
+        href="https://www.laliga.com/en-GB/player/kylian-mbappe-lottin"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="font-bold text-[#172033] underline decoration-2 underline-offset-4 hover:text-[#ff5a1f]"
+      >
+        LaLiga Official Profile ↗
+      </a>
+    </div>
+  </section>
+)}
             {/* QUICK FACTS */}
             <div className="mt-10 grid gap-4 sm:grid-cols-3">
 
