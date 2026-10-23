@@ -28,7 +28,7 @@ export async function generateMetadata({
     const difference = Math.abs(firstHeight - secondHeight);
 
     return {
-      title: `${firstPerson.name} vs ${secondPerson.name} Height | Height Pro`,
+     title: `${firstPerson.name} vs ${secondPerson.name} Height`,
       description: `Compare ${firstPerson.name} and ${secondPerson.name} heights. ${firstPerson.name} is ${firstHeight} cm and ${secondPerson.name} is ${secondHeight} cm, a difference of ${difference} cm. See the visual height comparison on Height Pro.`,
     };
   }
