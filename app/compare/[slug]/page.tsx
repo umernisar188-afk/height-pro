@@ -37,12 +37,12 @@ export async function generateMetadata({
     const difference = Math.abs(firstHeight - secondHeight);
 
     return {
-      title: `${firstHeight}cm vs ${secondPerson.name} Height | Height Pro`,
+      title: `${firstHeight}cm vs ${secondPerson.name} Height`,
       description: `Compare ${firstHeight} cm with ${secondPerson.name}. See the exact height difference, who is taller, and the visual height comparison on Height Pro.`,
     };
   }
   return {
-    title: "Height Comparison | Height Pro",
+    title: "Height Comparison",
     description:
       "Compare heights visually and see the exact difference between two people.",
   };

@@ -272,6 +272,46 @@ export default async function PersonPage({
     </div>
   </section>
 )}
+{/* HEIGHT SOURCES: CONOR MCGREGOR */}
+{person.slug === "conor-mcgregor" && (
+  <section className="mt-10 max-w-3xl border border-white/80 bg-white/60 p-6 shadow-lg backdrop-blur-xl">
+    <p className="text-sm font-black uppercase tracking-[0.2em] text-[#ff5a1f]">
+      Height Sources
+    </p>
+
+    <h2 className="mt-3 text-2xl font-black uppercase text-[#172033]">
+      Sources for Conor McGregor's Listed Height
+    </h2>
+
+    <p className="mt-4 text-base leading-7 text-[#172033]/70">
+      The UFC lists Conor McGregor's height as 69 inches,
+      equivalent to 5 ft 9 in. His official website also lists
+      his height as 5 ft 9 in, approximately 175 cm when rounded.
+      Height Pro presents this as a listed height rather than
+      an independent measurement.
+    </p>
+
+    <div className="mt-5 flex flex-wrap gap-5">
+      <a
+        href="https://www.ufc.com/athlete/conor-mcgregor?page=1"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="font-bold text-[#172033] underline decoration-2 underline-offset-4 hover:text-[#ff5a1f]"
+      >
+        UFC Official Profile ↗
+      </a>
+
+      <a
+        href="https://shop.conormcgregor.com/pages/media"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="font-bold text-[#172033] underline decoration-2 underline-offset-4 hover:text-[#ff5a1f]"
+      >
+        Official Website ↗
+      </a>
+    </div>
+  </section>
+)}
             {/* QUICK FACTS */}
             <div className="mt-10 grid gap-4 sm:grid-cols-3">
 
