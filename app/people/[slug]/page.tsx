@@ -28,8 +28,9 @@ export async function generateMetadata({
   const heightFeet = cmToFeetInches(person.heightCm);
 
   return {
-    title: `${person.name} Height: ${person.heightCm} cm`,
-    description: `How tall is ${person.name}? ${person.name} is listed at ${person.heightCm} cm (${heightFeet}). Compare your height with ${person.name} and other athletes, celebrities, and public figures on Height Pro.`,
+    title: `How Tall Is ${person.name}? ${person.heightCm} cm (${heightFeet}) + Comparison`,
+description: `${person.name} is ${person.heightCm} cm (${heightFeet}) tall. Compare ${person.name}'s height side by side with athletes, celebrities and your own height.`,
+alternates: { canonical: `https://heightproapp.com/people/${person.slug}` },
   };
 }
 
@@ -135,15 +136,14 @@ export default async function PersonPage({
               <p className="font-black uppercase tracking-[0.3em] text-[#ff5a1f]">
                 Champion Profile
               </p>
-
-              <h1 className="mt-4 text-5xl font-black uppercase leading-[0.9] tracking-tight text-[#172033] sm:text-7xl">
-                {person.name}
-              </h1>
-
-              <p className="mt-6 text-lg font-medium text-[#172033]/60">
-                How tall is {person.name}? Here is the listed height in both
-                centimeters and feet.
-              </p>
+<h1 className="mt-4 text-5xl font-black uppercase leading-[0.9] tracking-tight text-[#172033] sm:text-7xl">
+  How tall is {person.name}?
+</h1>
+<p className="mt-6 text-lg font-medium text-[#172033]/60">
+  {person.name} is about {person.heightCm} cm ({heightFeet}) tall.
+  Compare {person.name} side by side with other athletes, celebrities
+  and your own height below.
+</p>
 
             </div>
 
