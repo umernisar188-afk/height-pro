@@ -27,20 +27,27 @@ export async function generateMetadata({
   if (firstPerson && secondPerson) {
     const difference = Math.abs(firstHeight - secondHeight);
 
+    const answer =
+      difference === 0
+        ? `${firstPerson.name} and ${secondPerson.name} are the same height (${firstHeight} cm).`
+        : `${firstHeight > secondHeight ? firstPerson.name : secondPerson.name} is taller by ${difference} cm (${firstPerson.name} ${firstHeight} cm, ${secondPerson.name} ${secondHeight} cm).`;
+
     return {
-     title: `${firstPerson.name} vs ${secondPerson.name} Height`,
-      description: `Compare ${firstPerson.name} and ${secondPerson.name} heights. ${firstPerson.name} is ${firstHeight} cm and ${secondPerson.name} is ${secondHeight} cm, a difference of ${difference} cm. See the visual height comparison on Height Pro.`,
+      title: `${firstPerson.name} vs ${secondPerson.name} Height: Who Is Taller?`,
+      description: `Who is taller, ${firstPerson.name} or ${secondPerson.name}? ${answer} See the side-by-side height comparison.`,
+      alternates: {
+        canonical: `https://heightproapp.com/compare/${slug}`,
+      },
     };
   }
 
   if (firstHeight > 0 && secondPerson) {
-    const difference = Math.abs(firstHeight - secondHeight);
-
     return {
       title: `${firstHeight}cm vs ${secondPerson.name} Height`,
       description: `Compare ${firstHeight} cm with ${secondPerson.name}. See the exact height difference, who is taller, and the visual height comparison on Height Pro.`,
     };
   }
+
   return {
     title: "Height Comparison",
     description:
