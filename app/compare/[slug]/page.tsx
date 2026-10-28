@@ -191,11 +191,38 @@ export default async function ComparePage({
             <p className="mt-8 font-black uppercase tracking-[0.3em] text-[#ff5a1f]">
               Head To Head
             </p>
-<h1 className="mt-4 text-4xl font-black uppercase leading-[0.95] tracking-tight text-[#172033] sm:text-6xl">
+            <h1 className="mt-4 text-4xl font-black uppercase leading-[0.95] tracking-tight text-[#172033] sm:text-6xl">
   {firstPerson && secondPerson
-    ? `${firstPerson.name} vs ${secondPerson.name} Height`
+    ? `${firstPerson.name} vs ${secondPerson.name}: Who Is Taller?`
     : `${displayNameA} vs ${displayNameB} Height`}
 </h1>
+{firstPerson && secondPerson && (
+  <>
+    <p className="mt-6 text-lg font-medium text-[#172033]/60">
+      {firstPerson.heightCm === secondPerson.heightCm
+        ? `${firstPerson.name} and ${secondPerson.name} are the same height (${firstPerson.heightCm} cm).`
+        : `${
+            firstPerson.heightCm > secondPerson.heightCm
+              ? firstPerson.name
+              : secondPerson.name
+          } is taller by ${Math.abs(
+            firstPerson.heightCm - secondPerson.heightCm
+          )} cm. ${firstPerson.name} is ${firstPerson.heightCm} cm and ${
+            secondPerson.name
+          } is ${secondPerson.heightCm} cm.`}
+    </p>
+
+    <p className="mt-4 text-base font-bold text-[#172033]/70">
+      <Link href={`/people/${firstPerson.slug}`} className="underline decoration-2 underline-offset-4 hover:text-[#ff5a1f]">
+        How tall is {firstPerson.name}?
+      </Link>
+      {" · "}
+      <Link href={`/people/${secondPerson.slug}`} className="underline decoration-2 underline-offset-4 hover:text-[#ff5a1f]">
+        How tall is {secondPerson.name}?
+      </Link>
+    </p>
+  </>
+)}
 
             <p className="mx-auto mt-6 max-w-2xl text-lg font-medium text-[#172033]/60">
               Two heights enter the race. Only one can take the podium.
