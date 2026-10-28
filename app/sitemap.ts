@@ -8,8 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${baseUrl}/people/${person.slug}`,
     lastModified: new Date(),
   }));
-
-  const comparisonPairs = [
+  const manualPairs = [
     ["lionel-messi", "cristiano-ronaldo"],
     ["lionel-messi", "kylian-mbappe"],
     ["cristiano-ronaldo", "kylian-mbappe"],
@@ -22,8 +21,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ["shah-rukh-khan", "salman-khan"],
   ];
 
-  const comparisonUrls = comparisonPairs.map(([personA, personB]) => ({
-    url: `${baseUrl}/compare/${personA}-vs-${personB}`,
+  const pairSlugs = new Set<string>();
+
+  // Same pairs the people pages link to (3 related people each)
+  people.forEach((person) => {
+    people
+      .filter((p) => p.category === person.category && p.slug !== person.slug)
+      .slice(0, 3)
+      .forEach((related) => {
+        const [a, b] = [person.slug, related.slug].sort();
+        pairSlugs.add(`${a}-vs-${b}`);
+      });
+  });
+
+  // Your manual pairs, put in alphabetical order
+  manualPairs.forEach(([x, y]) => {
+    const [a, b] = [x, y].sort();
+    pairSlugs.add(`${a}-vs-${b}`);
+  });
+
+  const comparisonUrls = Array.from(pairSlugs).map((pair) => ({
+    url: `${baseUrl}/compare/${pair}`,
     lastModified: new Date(),
   }));
 
