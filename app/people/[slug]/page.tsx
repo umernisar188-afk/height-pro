@@ -406,7 +406,36 @@ export default async function PersonPage({
           celebrityName={person.name}
           celebrityHeight={person.heightCm}
         />
+{/* COMPARE LINKS */}
+{relatedPeople.length > 0 && (
+  <section className="mt-14">
+    <div className="mb-6">
+      <p className="font-black uppercase tracking-[0.25em] text-[#ff5a1f]">
+        Head To Head
+      </p>
 
+      <h2 className="mt-2 text-4xl font-black uppercase text-[#172033]">
+        Compare {person.name} With
+      </h2>
+    </div>
+
+    <div className="flex flex-wrap gap-4">
+      {relatedPeople.map((related) => {
+        const [first, second] = [person.slug, related.slug].sort();
+
+        return (
+          <Link
+            key={related.slug}
+            href={`/compare/${first}-vs-${second}`}
+            className="border-[3px] border-[#172033] bg-white/70 px-5 py-3 font-black uppercase text-[#172033] shadow-[4px_4px_0_#172033] backdrop-blur-xl transition hover:-translate-y-1 hover:bg-[#b9ef35]"
+          >
+            {person.name} vs {related.name} Height →
+          </Link>
+        );
+      })}
+    </div>
+  </section>
+)}
         {/* RELATED CHAMPIONS */}
         {relatedPeople.length > 0 && (
           <section className="mt-14">
