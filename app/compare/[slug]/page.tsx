@@ -45,6 +45,9 @@ export async function generateMetadata({
     return {
       title: `${firstHeight}cm vs ${secondPerson.name} Height`,
       description: `Compare ${firstHeight} cm with ${secondPerson.name}. See the exact height difference, who is taller, and the visual height comparison on Height Pro.`,
+      alternates: {
+        canonical: `https://heightproapp.com/compare/${slug}`,
+      },
     };
   }
 

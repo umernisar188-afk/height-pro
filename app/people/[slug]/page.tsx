@@ -26,11 +26,27 @@ export async function generateMetadata({
   }
 
   const heightFeet = cmToFeetInches(person.heightCm);
+  const title = `How Tall Is ${person.name}? ${person.heightCm} cm (${heightFeet}) + Comparison`;
+  const description = `${person.name} is ${person.heightCm} cm (${heightFeet}) tall. Compare ${person.name}'s height side by side with athletes, celebrities and your own height.`;
+  const url = `https://heightproapp.com/people/${person.slug}`;
 
   return {
-    title: `How Tall Is ${person.name}? ${person.heightCm} cm (${heightFeet}) + Comparison`,
-description: `${person.name} is ${person.heightCm} cm (${heightFeet}) tall. Compare ${person.name}'s height side by side with athletes, celebrities and your own height.`,
-alternates: { canonical: `https://heightproapp.com/people/${person.slug}` },
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: "Height Pro",
+      locale: "en_US",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
   };
 }
 
