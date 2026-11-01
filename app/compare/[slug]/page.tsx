@@ -31,13 +31,17 @@ export async function generateMetadata({
       difference === 0
         ? `${firstPerson.name} and ${secondPerson.name} are the same height (${firstHeight} cm).`
         : `${firstHeight > secondHeight ? firstPerson.name : secondPerson.name} is taller by ${difference} cm (${firstPerson.name} ${firstHeight} cm, ${secondPerson.name} ${secondHeight} cm).`;
+    const [sa, sb] = [firstPerson.slug, secondPerson.slug].sort();
+    const url = `https://heightproapp.com/compare/${sa}-vs-${sb}`;
+    const title = `${firstPerson.name} vs ${secondPerson.name} Height: Who Is Taller?`;
+    const description = `Who is taller, ${firstPerson.name} or ${secondPerson.name}? ${answer} See the side-by-side height comparison.`;
 
     return {
-      title: `${firstPerson.name} vs ${secondPerson.name} Height: Who Is Taller?`,
-      description: `Who is taller, ${firstPerson.name} or ${secondPerson.name}? ${answer} See the side-by-side height comparison.`,
-      alternates: {
-        canonical: `https://heightproapp.com/compare/${slug}`,
-      },
+      title,
+      description,
+      alternates: { canonical: url },
+      openGraph: { title, description, url },
+      twitter: { card: "summary_large_image", title, description },
     };
   }
 
