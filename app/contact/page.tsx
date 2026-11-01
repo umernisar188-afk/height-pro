@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-
 export const metadata: Metadata = {
-  title: "Contact Height Pro | Questions and Feedback",
+  title: "Contact Height Pro: Questions and Feedback",
   description:
     "Contact Height Pro to report incorrect celebrity height information, broken links, privacy concerns, or general website feedback.",
+  alternates: { canonical: "/contact" },
 };
 
 const contactEmail = "heightpro.support.pk@gmail.com";

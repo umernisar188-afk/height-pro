@@ -19,7 +19,8 @@ function getPerson(slug: string) {
 }
 
 export const metadata = {
-  title: "Celebrity Height Comparisons | Height Pro",
+  title: "Compare Celebrity Heights Side by Side",
+  alternates: { canonical: "/compare" },
   description:
     "Compare the heights of celebrities, athletes, fighters, footballers, actors, musicians, and other public figures. See exact height differences with Height Pro.",
 };

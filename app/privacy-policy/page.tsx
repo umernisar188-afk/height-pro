@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-
 export const metadata: Metadata = {
-  title: "Privacy Policy | Height Pro",
+  title: "Privacy Policy",
   description:
     "Learn how Height Pro handles website usage information, analytics, cookies, and advertising technologies.",
+  alternates: { canonical: "/privacy-policy" },
 };
 
 export default function PrivacyPolicyPage() {

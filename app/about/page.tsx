@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-
 export const metadata: Metadata = {
-  title: "About Height Pro | Celebrity Height Comparison",
+  title: "About Height Pro: Free Celebrity Height Comparison",
   description:
     "Learn about Height Pro, our celebrity height profiles, and our interactive height comparison tools.",
+  alternates: { canonical: "/about" },
 };
-
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-[#f7f2e8] px-4 py-12 text-[#172033] sm:px-8">
