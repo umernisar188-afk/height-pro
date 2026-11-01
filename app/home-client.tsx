@@ -1,12 +1,12 @@
 "use client";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Suspense, useEffect, useState } from "react";
 import confetti from "canvas-confetti";
 
 function Home() {
   const router = useRouter();
-  const searchParams = useSearchParams();
+
 
   const [heightA, setHeightA] = useState("");
   const [heightB, setHeightB] = useState("");
@@ -40,9 +40,10 @@ function Home() {
   }
 }, []);
 useEffect(() => {
-  const urlHeightA = searchParams.get("heightA");
-  const urlHeightB = searchParams.get("heightB");
-  const urlNameB = searchParams.get("nameB");
+  const params = new URLSearchParams(window.location.search);
+  const urlHeightA = params.get("heightA");
+  const urlHeightB = params.get("heightB");
+  const urlNameB = params.get("nameB");
 
   if (urlHeightB) {
     setHeightB(urlHeightB);
@@ -63,7 +64,7 @@ useEffect(() => {
     setAnimateBars(true);
     setResultVisible(true);
   }
-}, [searchParams]);
+}, []);
 const cmToFeetInches = (cm: number) => {
   if (!cm || cm <= 0) return "";
 

@@ -301,7 +301,7 @@ export default async function ComparePage({
               </p>
 
               <p className="mt-3 text-6xl font-black text-[#172033] sm:text-7xl">
-                {formatFeetInches(heightB)}
+                {heightB}
                 <span className="ml-2 text-2xl">
                   CM
                 </span>
