@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { people } from "../../data/people";
+import { getCompareFacts } from "../../lib/height-facts";
 export async function generateMetadata({
   params,
 }: {
@@ -113,7 +114,10 @@ export default async function ComparePage({
 
   const displayNameA = firstPerson?.name || "You";
   const displayNameB = secondPerson?.name || name || "Person B";
-
+  const compareFacts =
+    firstPerson && secondPerson
+      ? getCompareFacts(firstPerson, secondPerson)
+      : null;
   const winner =
     heightA > heightB
       ? "A"
@@ -524,6 +528,43 @@ export default async function ComparePage({
           : "They are the same listed height in this comparison."}
       </p>
     </div>
+  </section>
+)}
+{compareFacts && firstPerson && secondPerson && (
+  <section className="mx-6 mt-10 border-[4px] border-[#172033] bg-white p-6 sm:mx-10 sm:p-10">
+    <h2 className="text-3xl font-black uppercase text-[#172033]">
+      How Much Taller Is {compareFacts.taller.name}?
+    </h2>
+
+    <p className="mt-5 max-w-3xl text-lg leading-8 text-[#172033]/70">
+      {compareFacts.diffCm === 0
+        ? `${firstPerson.name} and ${secondPerson.name} are listed at the same height of ${firstPerson.heightCm} cm.`
+        : `${compareFacts.taller.name} is ${compareFacts.diffCm} cm (about ${compareFacts.diffInches} inches) taller than ${compareFacts.shorter.name}. That makes ${compareFacts.taller.name} ${compareFacts.percent}% taller.`}
+    </p>
+
+    <p className="mt-4 max-w-3xl text-lg leading-8 text-[#172033]/70">
+      Out of {compareFacts.totalPeople} people on Height Pro,{" "}
+      {firstPerson.name} ranks #{compareFacts.rankA} by height and{" "}
+      {secondPerson.name} ranks #{compareFacts.rankB}.
+      {compareFacts.betweenCount > 0
+        ? ` ${compareFacts.betweenCount} ${
+            compareFacts.betweenCount === 1 ? "person" : "people"
+          } in our database fall between them, including `
+        : " Nobody else in our database falls between them."}
+      {compareFacts.between.map((p, i) => (
+        <span key={p.slug}>
+          {i > 0 && ", "}
+          <Link
+            href={`/people/${p.slug}`}
+            className="font-bold text-[#172033] underline decoration-2 underline-offset-4 hover:text-[#ff5a1f]"
+          >
+            {p.name}
+          </Link>{" "}
+          ({p.heightCm} cm)
+        </span>
+      ))}
+      {compareFacts.betweenCount > 0 ? "." : ""}
+    </p>
   </section>
 )}
 {/* RELATED COMPARISONS */}

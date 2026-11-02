@@ -43,3 +43,36 @@ export function getPersonFacts(person: Person) {
     closest,
   };
 }
+export function getCompareFacts(a: Person, b: Person) {
+  const taller = a.heightCm >= b.heightCm ? a : b;
+  const shorter = taller.slug === a.slug ? b : a;
+  const diffCm = taller.heightCm - shorter.heightCm;
+  const diffInches = Math.round((diffCm / 2.54) * 10) / 10;
+  const percent =
+    Math.round((diffCm / shorter.heightCm) * 1000) / 10;
+
+  const rankOf = (p: Person) =>
+    people.filter((x) => x.heightCm > p.heightCm).length + 1;
+
+  const between = people.filter(
+    (x) =>
+      x.slug !== a.slug &&
+      x.slug !== b.slug &&
+      x.heightCm > shorter.heightCm &&
+      x.heightCm < taller.heightCm
+  );
+
+  return {
+    taller,
+    shorter,
+    diffCm,
+    diffInches,
+    percent,
+    rankA: rankOf(a),
+    rankB: rankOf(b),
+    totalPeople: people.length,
+    between: between.slice(0, 3),
+    betweenCount: between.length,
+    sameCategory: a.category === b.category,
+  };
+}
