@@ -64,15 +64,16 @@ export default async function PersonPage({
   }
 
   const heightFeet = cmToFeetInches(person.heightCm);
+  const sameCategory = people.filter((p) => p.category === person.category);
+  const myIndex = sameCategory.findIndex((p) => p.slug === person.slug);
 
-  const relatedPeople = people
-    .filter(
-      (p) =>
-        p.category === person.category &&
-        p.slug !== person.slug
-    )
-    .slice(0, 3);
-
+  const relatedPeople =
+    sameCategory.length > 1
+      ? Array.from(
+          { length: Math.min(3, sameCategory.length - 1) },
+          (_, i) => sameCategory[(myIndex + 1 + i) % sameCategory.length]
+        )
+      : [];
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#f7f2e8] px-4 py-10 sm:px-8 sm:py-16">
 
