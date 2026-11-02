@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { people } from "../../data/people";
 import HeightRace from "./HeightRace";
+import { getPersonFacts } from "../../lib/height-facts";
 function cmToFeetInches(cm: number) {
   const totalInches = cm / 2.54;
   const feet = Math.floor(totalInches / 12);
@@ -64,6 +65,7 @@ export default async function PersonPage({
   }
 
   const heightFeet = cmToFeetInches(person.heightCm);
+    const facts = getPersonFacts(person);
   const sameCategory = people.filter((p) => p.category === person.category);
   const myIndex = sameCategory.findIndex((p) => p.slug === person.slug);
 
@@ -423,6 +425,38 @@ export default async function PersonPage({
           celebrityName={person.name}
           celebrityHeight={person.heightCm}
         />
+        
+        {/* HEIGHT FACTS */}
+<section className="mt-14 max-w-3xl">
+  <h2 className="text-3xl font-black uppercase text-[#172033]">
+    {person.name} Height Compared To Others
+  </h2>
+
+  <p className="mt-4 text-lg leading-8 text-[#172033]/70">
+    At {person.heightCm} cm ({heightFeet}), {person.name} ranks #
+    {facts.categoryRank} out of {facts.categoryTotal} people in the{" "}
+    {person.category} category on Height Pro, and is {facts.averageText}.
+    Across all {facts.totalPeople} people in our database,{" "}
+    {facts.shorterCount} are shorter and {facts.tallerCount} are taller.
+  </p>
+
+  <p className="mt-4 text-lg leading-8 text-[#172033]/70">
+    People closest in height to {person.name}:{" "}
+    {facts.closest.map((c, i) => (
+      <span key={c.slug}>
+        {i > 0 && ", "}
+        <Link
+          href={`/people/${c.slug}`}
+          className="font-bold text-[#172033] underline decoration-2 underline-offset-4 hover:text-[#ff5a1f]"
+        >
+          {c.name}
+        </Link>{" "}
+        ({c.heightCm} cm)
+      </span>
+    ))}
+    .
+  </p>
+</section>
 {/* COMPARE LINKS */}
 {relatedPeople.length > 0 && (
   <section className="mt-14">
