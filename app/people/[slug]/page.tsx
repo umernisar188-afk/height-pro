@@ -32,7 +32,7 @@ export async function generateMetadata({
   const url = `https://heightproapp.com/people/${person.slug}`;
 
   return {
-    title,
+    title: { absolute: title },
     description,
     alternates: { canonical: url },
     openGraph: {
