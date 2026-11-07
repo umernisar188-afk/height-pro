@@ -406,6 +406,13 @@ export default async function PersonPage({
                 href={`/?heightB=${person.heightCm}&nameB=${encodeURIComponent(person.name)}`}
                 className="border-[3px] border-[#172033] bg-[#ff5a1f] px-7 py-4 font-black uppercase text-white shadow-[6px_6px_0_#172033] transition hover:-translate-y-1 hover:bg-[#b9ef35] hover:text-[#172033]"
               >
+                <Link
+  rel="nofollow"
+  href={`/?heightB=...`}
+  className="..."
+>
+  Compare Heights 🏁
+</Link>
                 Compare Heights 🏁
               </Link>
 

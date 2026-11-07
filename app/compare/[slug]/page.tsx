@@ -34,8 +34,17 @@ export async function generateMetadata({
         : `${firstHeight > secondHeight ? firstPerson.name : secondPerson.name} is taller by ${difference} cm (${firstPerson.name} ${firstHeight} cm, ${secondPerson.name} ${secondHeight} cm).`;
     const [sa, sb] = [firstPerson.slug, secondPerson.slug].sort();
     const url = `https://heightproapp.com/compare/${sa}-vs-${sb}`;
-    const title = `${firstPerson.name} vs ${secondPerson.name} Height: Who Is Taller?`;
-    const description = `Who is taller, ${firstPerson.name} or ${secondPerson.name}? ${answer} See the side-by-side height comparison.`;
+       const fullTitle = `${firstPerson.name} vs ${secondPerson.name} Height: Who Is Taller?`;
+    const title =
+      fullTitle.length > 60
+        ? `${firstPerson.name} vs ${secondPerson.name}: Who Is Taller?`
+        : fullTitle;
+    const description =
+      firstHeight === secondHeight
+        ? `${firstPerson.name} and ${secondPerson.name} are both ${firstHeight} cm.`
+        : `Who is taller, ${firstPerson.name} or ${secondPerson.name}? ${
+            firstHeight > secondHeight ? firstPerson.name : secondPerson.name
+          } is ${Math.abs(firstHeight - secondHeight)} cm taller.`;
 
     return {
       title,
