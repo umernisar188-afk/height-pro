@@ -4,6 +4,7 @@ export const metadata = {
   title: "How Accurate Are Celebrity Heights? | Height Pro",
   description:
     "Why celebrity heights can differ between sources, how standing height is measured, and how to interpret listed celebrity heights when comparing people.",
+     alternates: { canonical: "/blog/how-accurate-are-celebrity-height" }, 
 };
 
 export default function CelebrityHeightAccuracyPage() {

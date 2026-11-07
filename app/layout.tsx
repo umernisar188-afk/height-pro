@@ -143,6 +143,9 @@ export default function RootLayout({
               <a href="/privacy-policy" className="hover:underline">
                 Privacy Policy
               </a>
+                            <a href="/blog/how-accurate-are-celebrity-height" className="hover:underline">
+                Blog
+              </a>
             </nav>
           </div>
 
