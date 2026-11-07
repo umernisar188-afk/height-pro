@@ -610,6 +610,7 @@ export default async function ComparePage({
           <div className="flex flex-wrap justify-center gap-5 px-6 py-12">
 
             <Link
+            rel="nofollow"
               href={`/?heightA=${heightA}&heightB=${heightB}&nameB=${encodeURIComponent(
                 displayNameB
               )}`}
