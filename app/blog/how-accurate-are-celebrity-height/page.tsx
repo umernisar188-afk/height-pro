@@ -1,12 +1,19 @@
 import Link from "next/link";
-
-export const metadata = {
-  title: "How Accurate Are Celebrity Heights? | Height Pro",
+import type { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "How Accurate Are Celebrity Heights?",
   description:
     "Why celebrity heights can differ between sources, how standing height is measured, and how to interpret listed celebrity heights when comparing people.",
-     alternates: { canonical: "/blog/how-accurate-are-celebrity-height" }, 
+  alternates: { canonical: "/blog/how-accurate-are-celebrity-height" },
+  openGraph: {
+    title: "How Accurate Are Celebrity Heights?",
+    description:
+      "Why celebrity heights can differ between sources, how standing height is measured, and how to interpret listed celebrity heights when comparing people.",
+    url: "https://heightproapp.com/blog/how-accurate-are-celebrity-height",
+    siteName: "Height Pro",
+    type: "article",
+  },
 };
-
 export default function CelebrityHeightAccuracyPage() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#f7f2e8] px-4 py-10 sm:px-8 sm:py-16">
