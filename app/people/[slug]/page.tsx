@@ -27,7 +27,7 @@ export async function generateMetadata({
   }
 
   const heightFeet = cmToFeetInches(person.heightCm);
-  const title = `How Tall Is ${person.name}? ${person.heightCm} cm (${heightFeet}) + Comparison`;
+   const title = `How Tall Is ${person.name}? ${person.heightCm} cm (${heightFeet})`;
   const description = `${person.name} is ${person.heightCm} cm (${heightFeet}) tall. Compare ${person.name}'s height side by side with athletes, celebrities and your own height.`;
   const url = `https://heightproapp.com/people/${person.slug}`;
 
@@ -401,21 +401,13 @@ export default async function PersonPage({
 </section>
             {/* ACTION BUTTONS */}
             <div className="mt-12 flex flex-wrap gap-5">
-
-              <Link
-                href={`/?heightB=${person.heightCm}&nameB=${encodeURIComponent(person.name)}`}
-                className="border-[3px] border-[#172033] bg-[#ff5a1f] px-7 py-4 font-black uppercase text-white shadow-[6px_6px_0_#172033] transition hover:-translate-y-1 hover:bg-[#b9ef35] hover:text-[#172033]"
-              >
-                <Link
+<Link
   rel="nofollow"
-  href={`/?heightB=...`}
-  className="..."
+  href={`/?heightB=${person.heightCm}&nameB=${encodeURIComponent(person.name)}`}
+  className="border-[3px] border-[#172033] bg-[#ff5a1f] px-7 py-4 font-black uppercase text-white shadow-[6px_6px_0_#172033] transition hover:-translate-y-1 hover:bg-[#b9ef35] hover:text-[#172033]"
 >
   Compare Heights 🏁
 </Link>
-                Compare Heights 🏁
-              </Link>
-
               <Link
                 href="/people"
                 className="border-[3px] border-[#172033] bg-white/70 px-7 py-4 font-black uppercase text-[#172033] shadow-[6px_6px_0_#ffd43b] backdrop-blur-xl transition hover:-translate-y-1 hover:bg-[#ffd43b]"
